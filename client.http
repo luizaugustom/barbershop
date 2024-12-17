@@ -1,0 +1,20 @@
+@authToken = {authenticate.response.body.access_token }
+
+POST http://localhost:3333/accounts
+Content-Type: application/json
+
+{
+	"name": "diego",
+	"fone": "48991380119",
+	"password": "123456"
+}
+
+###
+
+POST http://localhost:3333/sessions
+Content-Type: application/json
+
+{
+	"fone": "48991380119",
+	"password": "123456"
+}

@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, Post } from "@nestjs/common";
-import { PrismaService } from "src/prisma/prisma-service";
+import { PrismaService } from "../../database/prisma/prisma-service";
 import { z } from "zod";
 
 const CreateAccountSchema = z.object({

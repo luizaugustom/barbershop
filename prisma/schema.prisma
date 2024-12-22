@@ -18,6 +18,7 @@ model Barber {
   name     String
   fone     String @unique
   password String
+  about    String
 
   scheduling Schedulings[]
 
@@ -36,12 +37,17 @@ model Client {
 }
 
 model Schedulings {
-  id   String @id @default(uuid())
-  date String
-  time String
+  id        String @id @default(uuid())
+  date      String
+  time      String
+  hair      String
+  beard     String
+  finishing String
+  eyebrow   String
+  value     String
 
-  CLient   Client? @relation(fields: [clientId], references: [id])
-  clientId String?
-  Barber   Barber? @relation(fields: [barberId], references: [id])
-  barberId String?
+  CLient   Client @relation(fields: [clientId], references: [id])
+  clientId String
+  Barber   Barber @relation(fields: [barberId], references: [id])
+  barberId String
 }

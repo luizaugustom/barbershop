@@ -3,20 +3,32 @@ import { Module } from "@nestjs/common";
 import { PrismaClientsRepository } from "./prisma/repositories/prisma-clients-repository";
 import { PrismaBarbersRepository } from "./prisma/repositories/prisma-barbers-repository";
 import { PrismaSchedulingRepository } from "./prisma/repositories/prisma-scheduling-repository";
+import { ClientsRepository } from "domain/barbershop/aplication/repositories/clients-repository";
+import { BarbersRepository } from "domain/barbershop/aplication/repositories/barbers-repository";
+import { SchedulingRepository } from "domain/barbershop/aplication/repositories/scheduling-repository";
 
 
 @Module({
     providers: [
         PrismaService,
-        PrismaClientsRepository,
-        PrismaBarbersRepository,
-        PrismaSchedulingRepository
+        {
+            provide: ClientsRepository,
+            useClass: PrismaClientsRepository,
+        },
+        {
+            provide: BarbersRepository,
+            useClass: PrismaBarbersRepository,
+        },
+        {
+            provide: SchedulingRepository,
+            useClass: PrismaSchedulingRepository
+        },
     ],
     exports: [
         PrismaService,
-        PrismaClientsRepository,
-        PrismaBarbersRepository,
-        PrismaSchedulingRepository
+        ClientsRepository,
+        BarbersRepository,
+        SchedulingRepository
     ],
 })
 	

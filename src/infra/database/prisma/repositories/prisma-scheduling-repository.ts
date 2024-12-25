@@ -4,8 +4,8 @@ import { PrismaService } from "../prisma-service";
 import { Scheduling } from "domain/barbershop/enterprise/entities/scheduling";
 import { PaginationParams } from "core/repositories/pagination-params";
 import { PrismaSchedulingMapper } from "../mappers/prisma-scheduling-mapper";
-import { map } from 'rxjs'
-import { PrismaBarberMapper } from "../mappers/prisma-barber-mapper";
+
+
 
 
 @Injectable()
@@ -29,19 +29,16 @@ export class PrismaSchedulingRepository implements SchedulingRepository {
     }
 
     async findManyById(barberId: string, {page}: PaginationParams): Promise<Scheduling[]> {
-       const schedulings  = await this.prisma.findMany({
+       const schedulings  = await this.prisma.schedulings.findMany({
         where: {
             barberId
-        },
-        orderBy: {
-            date: 'cresc'
         },
         take: 20,
         skip: (page - 1) * 20
        })
 
 
-        return [] //Resolver bug
+        return  schedulings.map(PrismaSchedulingMapper.toDomain) 
     }
 
 

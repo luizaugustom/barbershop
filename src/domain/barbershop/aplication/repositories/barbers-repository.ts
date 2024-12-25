@@ -1,8 +1,8 @@
 import { Barber } from "../../enterprise/entities/barber";
 
 
-export interface BarbersRepository {
-    create(barber: Barber): Promise<void>
-    findById(id: string): Promise<Barber | null>
-    save(barber: Barber): Promise<void>
+export abstract class BarbersRepository {
+    abstract create(barber: Barber): Promise<void>
+    abstract findById(id: string): Promise<Barber | null>
+    abstract save(barber: Barber): Promise<void>
 }

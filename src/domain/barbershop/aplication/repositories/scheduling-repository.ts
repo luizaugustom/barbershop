@@ -3,9 +3,9 @@ import { Scheduling } from "../../enterprise/entities/scheduling";
 
 
 
-export interface SchedulingRepository {
-    findById(id: string): Promise<Scheduling | null>
-    findManyById(barberId: string ,params: PaginationParams): Promise<Scheduling[]>
-    create(scheduling: Scheduling): Promise<void>
-    delete(scheduling: Scheduling): Promise<void>
+export abstract class SchedulingRepository {
+    abstract findById(id: string): Promise<Scheduling | null>
+    abstract findManyById(barberId: string ,params: PaginationParams): Promise<Scheduling[]>
+    abstract create(scheduling: Scheduling): Promise<void>
+    abstract delete(scheduling: Scheduling): Promise<void>
 }
